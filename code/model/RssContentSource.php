@@ -20,11 +20,29 @@ class RssContentSource extends ExternalContentSource {
 
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
+		Requirements::css('rssconnector/css/RssContentAdmin.css');
 
 		$fields->addFieldToTab(
 			'Root.Main', new TextField('Url', 'RSS/Atom Feed URL'),
 			'ShowContentInMenu'
 		);
+
+		if (!$this->Url || !$client = $this->getClient()) {
+			return $fields;
+		}
+
+		if ($client->error) {
+			$message = 'The feed URL entered appears to be invalid, or could not be loaded.';
+			$error   = $client->error;
+
+			$fields->addFieldToTab(
+				'Root.Main',
+				new LiteralField('InvalidFeed',
+					sprintf('<p id="invalid-feed">%s<span>%s</span></p>', $message, $error)),
+				'Name');
+
+			return $fields;
+		}
 
 		return $fields;
 	}
