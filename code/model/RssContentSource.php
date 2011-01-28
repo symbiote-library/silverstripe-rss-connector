@@ -12,8 +12,15 @@ require_once 'simplepie/simplepie.inc';
  */
 class RssContentSource extends ExternalContentSource {
 
+	const DEFAULT_CACHE_LIFETIME = 3600;
+
 	public static $db = array(
-		'Url' => 'Varchar(255)'
+		'Url'           => 'Varchar(255)',
+		'CacheLifetime' => 'Int'
+	);
+
+	public static $defaults = array(
+		'CacheLifetime' => self::DEFAULT_CACHE_LIFETIME
 	);
 
 	protected $client;
@@ -23,9 +30,12 @@ class RssContentSource extends ExternalContentSource {
 		Requirements::css('rssconnector/css/RssContentAdmin.css');
 
 		$fields->addFieldToTab(
-			'Root.Main', new TextField('Url', 'RSS/Atom Feed URL'),
-			'ShowContentInMenu'
-		);
+			'Root.Main',
+			new TextField('Url', 'RSS/Atom Feed URL'), 'ShowContentInMenu');
+
+		$fields->addFieldToTab(
+			'Root.Advanced',
+			new NumericField('CacheLifetime', 'Cache Lifetime (in seconds)'));
 
 		if (!$this->Url || !$client = $this->getClient()) {
 			return $fields;
@@ -91,6 +101,7 @@ class RssContentSource extends ExternalContentSource {
 		if (!$this->client) {
 			$this->client = new SimplePie($this->Url);
 			$this->client->enable_cache(true);
+			$this->client->set_cache_duration($this->getCacheLifetime());
 			$this->client->set_cache_location(TEMP_FOLDER);
 		}
 
@@ -99,6 +110,13 @@ class RssContentSource extends ExternalContentSource {
 
 	public function canImport() {
 		return $this->Url && !$this->getClient()->error;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getCacheLifetime() {
+		return ($t = $this->getField('CacheLifetime')) ? $t : self::DEFAULT_CACHE_LIFETIME;
 	}
 
 }
