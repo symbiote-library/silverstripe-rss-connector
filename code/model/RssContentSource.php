@@ -44,6 +44,13 @@ class RssContentSource extends ExternalContentSource {
 			return $fields;
 		}
 
+		$fields->addFieldsToTab('Root.Main', array(
+			new HeaderField('FeedDetailsHeader', 'Feed Details'),
+			new ReadonlyField('FeedTitle', 'Title', $client->get_title()),
+			new ReadonlyField('FeedDescription', 'Description', $client->get_description()),
+			new ReadonlyField('FeedLink', 'Link', $client->get_link())
+		));
+
 		return $fields;
 	}
 
