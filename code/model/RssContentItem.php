@@ -95,4 +95,9 @@ class RssContentItem extends ExternalContentItem {
 	public function getCategories() {
 		return $this->categories;
 	}
+
+	public function canImport() {
+		return false;
+	}
+
 }
