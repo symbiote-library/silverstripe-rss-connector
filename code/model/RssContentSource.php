@@ -122,6 +122,14 @@ class RssContentSource extends ExternalContentSource {
 		return $this->client;
 	}
 
+	public function getContentImporter() {
+		return new RssContentImporter();
+	}
+
+	public function allowedImportTargets() {
+		return array('sitetree' => true);
+	}
+
 	public function canImport() {
 		return $this->Url && !$this->getClient()->error;
 	}
