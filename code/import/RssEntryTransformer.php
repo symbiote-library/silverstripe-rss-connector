@@ -1,5 +1,11 @@
 <?php
 /**
+ * @package silverstripe-rssconnector
+ */
+
+require_once Director::baseFolder() . '/rssconnector/thirdparty/htmlpurifier/HTMLPurifier.auto.php';
+
+/**
  * Transforms an RSS entry into a local blog entry.
  *
  * @package silverstripe-rssconnector
@@ -33,11 +39,13 @@ class RssEntryTransformer implements ExternalContentTransformer {
 		$entry->Guid            = $guid;
 		$entry->ExternalLink    = $item->Link;
 		$entry->Title           = $item->Title;
-		$entry->Content         = $item->Content;
 		$entry->ParentID        = $parent->ID;
 		$entry->Date            = $item->Date;
 		$entry->Author          = $item->AuthorName;
 		$entry->ProvideComments = isset($params['ProvideComments']);
+
+		$purifier = new HTMLPurifier();
+		$entry->Content = $purifier->purify($item->Content);
 
 		if (isset($params['ImportCategories'])) {
 			$labels = $item->getCategories()->map('Term', 'Label');
