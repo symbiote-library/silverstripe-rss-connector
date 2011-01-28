@@ -61,6 +61,20 @@ class RssContentSource extends ExternalContentSource {
 			new ReadonlyField('FeedLink', 'Link', $client->get_link())
 		));
 
+		$fields->addFieldsToTab('Root.Import', array(
+			new HeaderField('PostImportHeader', 'Post Import Settings'),
+			new CheckboxField('PublishPosts', 'Publish imported posts?', true),
+			new CheckboxField('ProvideComments', 'Allow comments on imported posts?', true),
+			new HeaderField('TagsImportHeader', 'Tags Import Settings'),
+			new CheckboxField('ImportCategories', 'Import categories as tags?', true),
+			new DropdownField('UnknownCategories', 'Unknown categories', array(
+				'create' => 'Have a tag created for them',
+				'skip'   => 'Are ignored'
+			)),
+			new TextField('ExtraTags', 'Tags to include on imported posts (comma separated)'),
+			new HeaderField('GeneralImportHeader', 'General Import Settings')
+		));
+
 		return $fields;
 	}
 
