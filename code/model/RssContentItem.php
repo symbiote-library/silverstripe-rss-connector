@@ -88,4 +88,11 @@ class RssContentItem extends ExternalContentItem {
 		return $fields;
 	}
 
+	public function getGuid() {
+		return $this->externalId;
+	}
+
+	public function getCategories() {
+		return $this->categories;
+	}
 }
