@@ -5,6 +5,7 @@
 
 ## Requirements
 *  SilverStripe 2.4+
+*  The SilverStripe Blog Module
 
 ## Project Links
 *  [GitHub Project Page](https://github.com/ajshort/silverstripe-rssconnector)
