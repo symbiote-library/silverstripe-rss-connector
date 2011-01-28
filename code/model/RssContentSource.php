@@ -90,4 +90,8 @@ class RssContentSource extends ExternalContentSource {
 		return $this->client;
 	}
 
+	public function canImport() {
+		return !$this->client->error;
+	}
+
 }
