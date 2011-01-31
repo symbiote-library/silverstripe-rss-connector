@@ -61,6 +61,16 @@ class RssContentSource extends ExternalContentSource {
 			new ReadonlyField('FeedLink', 'Link', $client->get_link())
 		));
 
+		// If the blog module doesn't exist, we can't run imports.
+		if (!class_exists('BlogEntry')) {
+			$fields->addFieldToTab('Root.Import', new LiteralField(
+				'RequiresBlogImport', '<p>The RSS connector requires the blog '
+				. 'module to import RSS items.</p>'
+			));
+
+			return $fields;
+		}
+
 		$fields->addFieldsToTab('Root.Import', array(
 			new HeaderField('PostImportHeader', 'Post Import Settings'),
 			new CheckboxField('PublishPosts', 'Publish imported posts?', true),
@@ -131,7 +141,7 @@ class RssContentSource extends ExternalContentSource {
 	}
 
 	public function canImport() {
-		return $this->Url && !$this->getClient()->error;
+		return class_exists('BlogEntry') && $this->Url && !$this->getClient()->error;
 	}
 
 	/**

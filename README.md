@@ -5,7 +5,7 @@
 
 ## Requirements
 *  SilverStripe 2.4+
-*  The SilverStripe Blog Module
+*  The SilverStripe Blog Module is required for running imports.
 
 ## Project Links
 *  [GitHub Project Page](https://github.com/ajshort/silverstripe-rssconnector)
