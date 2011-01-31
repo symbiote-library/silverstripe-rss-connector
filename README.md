@@ -5,6 +5,7 @@
 
 ## Requirements
 *  SilverStripe 2.4+
+*  The External Content module.
 *  The SilverStripe Blog Module is required for running imports.
 
 ## Project Links
