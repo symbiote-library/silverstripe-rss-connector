@@ -23,6 +23,8 @@ class RssContentSource extends ExternalContentSource {
 		'CacheLifetime' => self::DEFAULT_CACHE_LIFETIME
 	);
 
+	public static $icon = 'rssconnector/images/rssconnector';
+
 	protected $client;
 
 	public function getCMSFields() {
