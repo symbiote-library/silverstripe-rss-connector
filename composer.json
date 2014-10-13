@@ -15,6 +15,7 @@
   "require": {
     "silverstripe/cms": "~3.1",
     "silverstripe/framework": "~3.1",
+    "silverstripe/external-content": "dev-master",
     "simplepie/simplepie": "dev-master",
     "ezyang/htmlpurifier": "dev-master"
   },
