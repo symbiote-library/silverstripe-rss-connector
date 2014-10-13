@@ -1,0 +1,24 @@
+{
+  "name": "anselmdk/silverstripe-rssconnector",
+  "description": "A fork of the SilverStripe RSS Connector Module",
+  "type": "silverstripe-module",
+  "homepage": "https://github.com/anselmdk/silverstripe-rssconnector",
+  "keywords": ["silverstripe", "rss"],
+  "authors": [
+    {"name": "Andrew Short","email": "andrew@silverstripe.com.au"},
+    {"name": "Anselm Christophersen","email": "ac@anselm.dk"}
+    
+  ],
+  "support": {
+    "issues": "https://github.com/anselmdk/silverstripe-rssconnector/issues"
+  },
+  "require": {
+    "silverstripe/cms": "~3.1",
+    "silverstripe/framework": "~3.1",
+    "simplepie/simplepie": "dev-master",
+    "ezyang/htmlpurifier": "dev-master"
+  },
+  "extra": {
+    "installer-name": "rssconnector"
+  }
+}	
