@@ -3,7 +3,7 @@
  * @package silverstripe-rsscontent
  */
 
-require_once 'simplepie/simplepie.inc';
+//require_once 'simplepie/simplepie.inc';
 
 /**
  * An external RSS feed that content can be imported from.
@@ -14,16 +14,16 @@ class RssContentSource extends ExternalContentSource {
 
 	const DEFAULT_CACHE_LIFETIME = 3600;
 
-	public static $db = array(
+	private static $db = array(
 		'Url'           => 'Varchar(255)',
 		'CacheLifetime' => 'Int'
 	);
 
-	public static $defaults = array(
+	private static $defaults = array(
 		'CacheLifetime' => self::DEFAULT_CACHE_LIFETIME
 	);
 
-	public static $icon = 'rssconnector/images/rssconnector';
+	private static $icon = 'rssconnector/images/rssconnector';
 
 	protected $client;
 
@@ -109,9 +109,9 @@ class RssContentSource extends ExternalContentSource {
 		return $this;
 	}
 
-	public function stageChildren() {
+	public function stageChildren($showAll = false) {
 		$items    = $this->getClient()->get_items();
-		$children = new DataObjectSet();
+		$children = new ArrayList();
 
 		foreach ($items as $item) {
 			$children->push(new RssContentItem($this, $item));
@@ -125,16 +125,20 @@ class RssContentSource extends ExternalContentSource {
 	 */
 	public function getClient() {
 		if (!$this->client) {
-			$this->client = new SimplePie($this->Url);
+			$this->client = new SimplePie();
+			$this->client->set_feed_url($this->Url);
 			$this->client->enable_cache(true);
 			$this->client->set_cache_duration($this->getCacheLifetime());
+			//$this->client->set_cache_duration(0);
 			$this->client->set_cache_location(TEMP_FOLDER);
 		}
+
+		$this->client->init();
 
 		return $this->client;
 	}
 
-	public function getContentImporter() {
+	public function getContentImporter($target = NULL) {
 		return new RssContentImporter();
 	}
 

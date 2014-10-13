@@ -34,10 +34,10 @@ class RssContentItem extends ExternalContentItem {
 			$this->AuthorLink  = $author->get_link();
 		}
 
-		$this->categories = new DataObjectSet();
+		$this->categories = new ArrayList();
 		
-		//$categories = @$this->item->get_categories();
-		$categories = self::simplepie_get_categories($this->item);
+		$categories = @$this->item->get_categories();
+		//$categories = self::simplepie_get_categories($this->item);
 
 		if ($categories) foreach ($categories as $category) {
 			$this->categories->push(new ArrayData(array(
@@ -55,8 +55,8 @@ class RssContentItem extends ExternalContentItem {
 		return 0;
 	}
 
-	public function stageChildren() {
-		return new DataObjectSet();
+	public function stageChildren($showAll = false) {
+		return new ArrayList();
 	}
 
 	public function getType() {
@@ -66,17 +66,17 @@ class RssContentItem extends ExternalContentItem {
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 
-		$categories = new TableListField('Categories', false, array(
-			'Label'  => 'Label',
-			'Term'   => 'Term',
-			'Scheme' => 'Scheme'
-		));
-		$categories->setCustomSourceItems($this->categories);
+		//$categories = new TableListField('Categories', false, array(
+		//	'Label'  => 'Label',
+		//	'Term'   => 'Term',
+		//	'Scheme' => 'Scheme'
+		//));
+		//$categories->setCustomSourceItems($this->categories);
 
-		$fields->addFieldsToTab('Root.Details', array(
-			new HeaderField('CategoriesHeader', 'Categories', 4),
-			$categories->performReadonlyTransformation()
-		));
+		//$fields->addFieldsToTab('Root.Details', array(
+		//	new HeaderField('CategoriesHeader', 'Categories', 4),
+		//	$categories->performReadonlyTransformation()
+		//));
 
 		$fields->addFieldsToTab('Root.Location', array(
 			new ReadonlyField('Latitude', null, $this->Latitude),
