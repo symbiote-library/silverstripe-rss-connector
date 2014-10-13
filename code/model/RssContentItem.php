@@ -106,44 +106,44 @@ class RssContentItem extends ExternalContentItem {
 
 
 	//amended simple pie method for proper category import
-	static function simplepie_get_categories($item) {
-		
-		$categories = array();
+	//static function simplepie_get_categories($item) {
+	//	
+	//	$categories = array();
 
-		foreach ((array) $item->get_item_tags(SIMPLEPIE_NAMESPACE_ATOM_10, 'category') as $category)
-		{
-			$term = null;
-			$scheme = null;
-			$label = null;
-			if (isset($category['attribs']['']['term']))
-			{
-				$term = $item->sanitize($category['attribs']['']['term'], SIMPLEPIE_CONSTRUCT_TEXT);
-			}
-			if (isset($category['attribs']['']['scheme']))
-			{
-				$scheme = $item->sanitize($category['attribs']['']['scheme'], SIMPLEPIE_CONSTRUCT_TEXT);
-			}
-			if (isset($category['attribs']['']['label']))
-			{
-				$label = $item->sanitize($category['attribs']['']['label'], SIMPLEPIE_CONSTRUCT_TEXT);
-			}
-			$categories[] =& new $item->feed->category_class($term, $scheme, $label);
-		}
-		foreach ((array) $item->get_item_tags('', 'category') as $category)
-		{
-			$categories[] =& new $item->feed->category_class($item->sanitize($category['data'], SIMPLEPIE_CONSTRUCT_TEXT), null, null);
-		}
-		foreach ((array) $item->get_item_tags(SIMPLEPIE_NAMESPACE_DC_11, 'subject') as $category)
-		{
-			$categories[] =& new $item->feed->category_class($item->sanitize($category['data'], SIMPLEPIE_CONSTRUCT_TEXT), null, null);
-		}
-		foreach ((array) $item->get_item_tags(SIMPLEPIE_NAMESPACE_DC_10, 'subject') as $category)
-		{
-			$categories[] =& new $item->feed->category_class($item->sanitize($category['data'], SIMPLEPIE_CONSTRUCT_TEXT), null, null);
-		}
-	
-		return $categories;
-	}
+	//	foreach ((array) $item->get_item_tags(SIMPLEPIE_NAMESPACE_ATOM_10, 'category') as $category)
+	//	{
+	//		$term = null;
+	//		$scheme = null;
+	//		$label = null;
+	//		if (isset($category['attribs']['']['term']))
+	//		{
+	//			$term = $item->sanitize($category['attribs']['']['term'], SIMPLEPIE_CONSTRUCT_TEXT);
+	//		}
+	//		if (isset($category['attribs']['']['scheme']))
+	//		{
+	//			$scheme = $item->sanitize($category['attribs']['']['scheme'], SIMPLEPIE_CONSTRUCT_TEXT);
+	//		}
+	//		if (isset($category['attribs']['']['label']))
+	//		{
+	//			$label = $item->sanitize($category['attribs']['']['label'], SIMPLEPIE_CONSTRUCT_TEXT);
+	//		}
+	//		$categories[] =& new $item->feed->category_class($term, $scheme, $label);
+	//	}
+	//	foreach ((array) $item->get_item_tags('', 'category') as $category)
+	//	{
+	//		$categories[] =& new $item->feed->category_class($item->sanitize($category['data'], SIMPLEPIE_CONSTRUCT_TEXT), null, null);
+	//	}
+	//	foreach ((array) $item->get_item_tags(SIMPLEPIE_NAMESPACE_DC_11, 'subject') as $category)
+	//	{
+	//		$categories[] =& new $item->feed->category_class($item->sanitize($category['data'], SIMPLEPIE_CONSTRUCT_TEXT), null, null);
+	//	}
+	//	foreach ((array) $item->get_item_tags(SIMPLEPIE_NAMESPACE_DC_10, 'subject') as $category)
+	//	{
+	//		$categories[] =& new $item->feed->category_class($item->sanitize($category['data'], SIMPLEPIE_CONSTRUCT_TEXT), null, null);
+	//	}
+	//
+	//	return $categories;
+	//}
 
 
 }
