@@ -66,17 +66,18 @@ class RssContentItem extends ExternalContentItem {
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 
-		//$categories = new TableListField('Categories', false, array(
-		//	'Label'  => 'Label',
-		//	'Term'   => 'Term',
-		//	'Scheme' => 'Scheme'
-		//));
-		//$categories->setCustomSourceItems($this->categories);
-
-		//$fields->addFieldsToTab('Root.Details', array(
-		//	new HeaderField('CategoriesHeader', 'Categories', 4),
-		//	$categories->performReadonlyTransformation()
-		//));
+		$categoriesString = '';
+		foreach ($this->categories as $cat) {
+			//$categoriesString .= "<li>$cat->Label / $cat->Term / $cat->Scheme</li> \n";
+			$categoriesString .= "<li>$cat->Label</li> \n";
+		}
+		$categoriesString = "<ul>$categoriesString</ul>";
+		
+		
+		$fields->addFieldsToTab('Root.Main', array(
+			new HeaderField('CategoriesHeader', 'Categories', 4),
+			new LiteralField('Categories', $categoriesString)
+		));
 
 		$fields->addFieldsToTab('Root.Location', array(
 			new ReadonlyField('Latitude', null, $this->Latitude),
