@@ -3,8 +3,6 @@
  * @package silverstripe-rsscontent
  */
 
-//require_once 'simplepie/simplepie.inc';
-
 /**
  * An external RSS feed that content can be imported from.
  *
