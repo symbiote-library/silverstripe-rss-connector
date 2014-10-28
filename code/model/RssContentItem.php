@@ -26,7 +26,12 @@ class RssContentItem extends ExternalContentItem {
 		$this->Title     = $this->item->get_title();
 		$this->Link      = $this->item->get_link();
 		$this->Date      = $this->item->get_date('Y-m-d H:i:s');
-		$this->Content   = $this->item->get_content();
+
+		$content = $this->item->get_content();
+		$content = str_replace('></iframe>', '> </iframe>', $content);
+		
+		
+		$this->Content   = $content;
 
 		if ($author = $this->item->get_author()) {
 			$this->AuthorName  = $author->get_name();

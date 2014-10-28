@@ -124,6 +124,17 @@ class RssContentSource extends ExternalContentSource {
 	public function getClient() {
 		if (!$this->client) {
 			$this->client = new SimplePie();
+
+			//enabling odd tags - for now only iframe
+			//TODO make this configurable
+			$strip_htmltags = $this->client->strip_htmltags;
+			//array_splice($strip_htmltags, array_search('object', $strip_htmltags), 1);
+			//array_splice($strip_htmltags, array_search('param', $strip_htmltags), 1);
+			//array_splice($strip_htmltags, array_search('embed', $strip_htmltags), 1);
+			array_splice($strip_htmltags, array_search('iframe', $strip_htmltags), 1);
+
+			$this->client->strip_htmltags($strip_htmltags);
+			
 			$this->client->set_feed_url($this->Url);
 			$this->client->enable_cache(true);
 			$this->client->set_cache_duration($this->getCacheLifetime());
