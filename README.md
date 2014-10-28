@@ -4,7 +4,7 @@
 *  Andrew Short (<andrew@silverstripe.com.au>)
 
 ## Requirements
-*  SilverStripe 2.4+
+*  SilverStripe 3.1+
 *  The External Content module.
 *  The SilverStripe Blog Module is required for running imports.
 
