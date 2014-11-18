@@ -34,7 +34,7 @@ class RssContentItem extends ExternalContentItem {
 			$this->AuthorLink  = $author->get_link();
 		}
 
-		$this->categories = new DataObjectSet();
+		$this->categories = new ArrayList();
 		$categories = @$this->item->get_categories();
 
 		if ($categories) foreach ($categories as $category) {
@@ -47,14 +47,16 @@ class RssContentItem extends ExternalContentItem {
 
 		$this->Latitude  = $this->item->get_latitude();
 		$this->Longitude = $this->item->get_longitude();
+		
+		unset($this->item);
 	}
 
 	public function numChildren() {
 		return 0;
 	}
 
-	public function stageChildren() {
-		return new DataObjectSet();
+	public function stageChildren($showAll = false) {
+		return new ArrayList();
 	}
 
 	public function getType() {
@@ -64,17 +66,20 @@ class RssContentItem extends ExternalContentItem {
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 
-		$categories = new TableListField('Categories', false, array(
-			'Label'  => 'Label',
-			'Term'   => 'Term',
-			'Scheme' => 'Scheme'
-		));
-		$categories->setCustomSourceItems($this->categories);
-
-		$fields->addFieldsToTab('Root.Details', array(
-			new HeaderField('CategoriesHeader', 'Categories', 4),
-			$categories->performReadonlyTransformation()
-		));
+		
+//		$categories = GridField::create();
+		
+//		$categories = new TableListField('Categories', false, array(
+//			'Label'  => 'Label',
+//			'Term'   => 'Term',
+//			'Scheme' => 'Scheme'
+//		));
+//		$categories->setCustomSourceItems($this->categories);
+//
+//		$fields->addFieldsToTab('Root.Details', array(
+//			new HeaderField('CategoriesHeader', 'Categories', 4),
+//			$categories->performReadonlyTransformation()
+//		));
 
 		$fields->addFieldsToTab('Root.Location', array(
 			new ReadonlyField('Latitude', null, $this->Latitude),

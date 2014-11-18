@@ -1,0 +1,19 @@
+{
+	"name": "silverstripe/rss-connector",
+	"description": "An RSS connector for the external content module.",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe", "external-content", "integration", "rss"],
+	"authors": [{
+		"name": "Marcus Nyeholt",
+		"email": "marcus@silverstripe.com.au"
+	},
+	{
+		"name": "Andrew Short",
+		"email": "andrew@silverstripe.com.au"
+	}
+	],
+	"require": {
+		"silverstripe/framework": ">=3.1.0",
+		"simplepie/simplepie": "dev-master"
+	}
+}
