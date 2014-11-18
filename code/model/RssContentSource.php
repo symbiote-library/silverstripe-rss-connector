@@ -10,7 +10,7 @@
  */
 class RssContentSource extends ExternalContentSource {
 
-	const DEFAULT_CACHE_LIFETIME = 600;
+	const DEFAULT_CACHE_LIFETIME = 1800;
 
 	public static $db = array(
 		'Url'           => 'Varchar(255)',
