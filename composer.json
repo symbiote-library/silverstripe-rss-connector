@@ -1,5 +1,5 @@
 {
-	"name": "silverstripe/rss-connector",
+	"name": "silverstripe-australia/rss-connector",
 	"description": "An RSS connector for the external content module.",
 	"type": "silverstripe-module",
 	"keywords": ["silverstripe", "external-content", "integration", "rss"],
@@ -15,5 +15,8 @@
 	"require": {
 		"silverstripe/framework": ">=3.1.0",
 		"simplepie/simplepie": "dev-master"
+	},
+	"replace": {
+		"silverstripe/rss-connector": "self.version"
 	}
 }
