@@ -4,18 +4,19 @@
  *
  * @package silverstripe-rssconnector
  */
-class ExternalBlogEntry extends BlogEntry {
+class ExternalBlogEntry extends BlogEntry
+{
 
-	public static $db = array(
-		'Guid'         => 'Varchar(255)',
-		'ExternalLink' => 'Varchar(255)'
-	);
+    public static $db = array(
+        'Guid'         => 'Varchar(255)',
+        'ExternalLink' => 'Varchar(255)'
+    );
 
-	public static $has_one = array(
-		'Source' => 'RssContentSource'
-	);
-
+    public static $has_one = array(
+        'Source' => 'RssContentSource'
+    );
 }
 
-class ExternalBlogEntry_Controller extends BlogEntry_Controller {
+class ExternalBlogEntry_Controller extends BlogEntry_Controller
+{
 }
