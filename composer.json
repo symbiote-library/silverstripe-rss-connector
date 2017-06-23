@@ -5,11 +5,11 @@
 	"keywords": ["silverstripe", "external-content", "integration", "rss"],
 	"authors": [{
 		"name": "Marcus Nyeholt",
-		"email": "marcus@silverstripe.com.au"
+		"email": "marcus@symbiote.com.au"
 	},
 	{
 		"name": "Andrew Short",
-		"email": "andrew@silverstripe.com.au"
+		"email": "andrew@symbiote.com.au"
 	}
 	],
 	"require": {
