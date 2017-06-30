@@ -17,6 +17,7 @@
 		"simplepie/simplepie": "dev-master"
 	},
 	"extra": {
+		"installer-name": "rss-connector",
 		"branch-alias": {
 			"dev-master": "1.0.x-dev"
 		}
