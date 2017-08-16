@@ -3,7 +3,7 @@
  * @package silverstripe-rssconnector
  */
 
-require_once Director::baseFolder() . '/rssconnector/thirdparty/htmlpurifier/HTMLPurifier.auto.php';
+require_once Director::baseFolder() . '/rss-connector/thirdparty/htmlpurifier/HTMLPurifier.auto.php';
 
 /**
  * Transforms an RSS entry into a local blog entry.
